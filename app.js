@@ -14,8 +14,13 @@ var app = express();
 var server = http.createServer(app);
 
 var wss = new WebSocketServer({server: server});
+var backlog = [];
 wss.on('connection', function(ws) {
+    backlog.forEach(function(message) {
+        ws.send(message);
+    });
     ws.on('message', function(message) {
+        backlog.push(message);
         wss.clients.forEach(function (client) {
             client.send(message);
         });

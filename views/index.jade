@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Chat is French for cat
+  div#messagespace
+  div#name-prompt
+    form
+      input#name(type="text" placeholder="What's your name?" name="name")
+      input(type="submit" value="That's Me!")
+  div#typingspace(style="display: none")
+    form#typing
+      input#message(type="text" placeholder="type here" name="message")
+      input(type="submit" value="Send!")
